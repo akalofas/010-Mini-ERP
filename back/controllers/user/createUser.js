@@ -3,7 +3,7 @@ const { hashPassword } = require('../../services/authService');
 
 const createUser = async (req, res) => {
 	try {
-		const existUser = await User.findOne( req.body.email);
+		const existUser = await User.findOne({ email: req.body.email });
 		if (existUser) {
 			return res.status(409).send('User already exists');
 		}
