@@ -29,7 +29,10 @@ database.connect();
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/roles', require('./routes/userRoleRoutes'));
 app.use('/api/companies', require('./routes/companyRoutes'));
+app.use('/api/company-user-roles', require('./routes/companyUserRoleRoutes'));
 app.use('/api/logs', require('./routes/logRoutes'));
+app.use('/api/financial-information', require('./routes/financialInformationRoutes'));
+
 
 // Error handling middleware
 app.use(errorHandler);

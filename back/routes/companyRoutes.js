@@ -1,5 +1,7 @@
 const express = require('express');
 const { authMiddleware } = require('../middlewares/authMiddleware');
+const { companyAuthMiddleware } = require('../middlewares/companyAuthMiddleware');
+const { companyAdminMiddleware } = require('../middlewares/companyAdminMiddleware');
 const {
 	createCompany,
 	getCompany,
@@ -9,9 +11,9 @@ const {
 
 const router = express.Router();
 
-router.post('/', authMiddleware, createCompany);
-router.get('/:id', authMiddleware, getCompany);
-router.put('/:id', authMiddleware, updateCompany);
-router.delete('/:id', authMiddleware, deleteCompany);
+router.post('/', [authMiddleware, companyAuthMiddleware, companyAdminMiddleware], createCompany);
+router.get('/:id', [authMiddleware, companyAuthMiddleware, companyAdminMiddleware], getCompany);
+router.put('/:id', [authMiddleware, companyAuthMiddleware, companyAdminMiddleware], updateCompany);
+router.delete('/:id', [authMiddleware, companyAuthMiddleware, companyAdminMiddleware], deleteCompany);
 
 module.exports = router;
